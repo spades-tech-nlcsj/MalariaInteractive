@@ -3,10 +3,11 @@ import pandas as pd
 import geopandas as gpd
 import plotly.express as px
 
-# Load world shapefile or GeoJSON data
+
 @st.cache_data
 def load_geo_data():
-    world = gpd.read_file(gpd.datasets.get_path('naturalearth_lowres'))
+    geo_file = "world_countries.geojson" 
+    world = gpd.read_file(geo_file)
     return world
 
 
@@ -29,7 +30,7 @@ geo_data = load_geo_data()
 malaria_data = load_malaria_data()
 
 
-geo_data = geo_data.rename(columns={'name': 'country'})
+geo_data = geo_data.rename(columns={'ADMIN': 'country'})  
 merged_data = geo_data.merge(malaria_data, on='country', how='left')
 
 
