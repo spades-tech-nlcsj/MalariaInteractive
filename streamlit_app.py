@@ -6,7 +6,7 @@ import plotly.express as px
 
 @st.cache_data
 def load_geo_data():
-    geo_file = "world_countries.geojson" 
+    geo_file = "countries.json" 
     world = gpd.read_file(geo_file)
     return world
 
